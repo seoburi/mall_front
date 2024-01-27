@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { UseDispatch, useDispatch } from "react-redux";
-import {login} from "../../slices/loginSlice"
-
-
+import useCustomLogin from "../../hooks/useCustomLogin";
+import KakaoLoginComponent from "../member/KakaoLoginComponent"
 
 const initState = {
     email: '',
@@ -12,7 +10,7 @@ const initState = {
 const LoginComponent = () => {
     const [loginParam, setLoginParam] = useState({...initState})
 
-    const dispatch = useDispatch()
+    const {doLogin, moveToPath} = useCustomLogin()
     
     const handleChange = (e) => {
         loginParam[e.target.name] = e.target.value
@@ -21,7 +19,21 @@ const LoginComponent = () => {
     }
 
     const handleClickLogin = (e) => {
-        dispatch(login(loginParam))
+        // dispatch(login(loginParam)) //동기화된 호출
+        
+        
+        doLogin(loginParam)     // loginSlice의 비동기 호출
+        .then(data => {
+            console.log(data)
+
+            if (data.error) {
+                alert("이메일과 패스워드를 다시 확인하세요")
+            } else {
+                alert("로그인 성공")
+                moveToPath('/')
+            }
+        })
+        
     }
 
     return (
@@ -61,6 +73,7 @@ const LoginComponent = () => {
                     </div>
                 </div>
             </div>
+            <KakaoLoginComponent/>
         </div>
     )
 }

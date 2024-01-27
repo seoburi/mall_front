@@ -4,6 +4,8 @@ import { getList } from "../../api/productsApi"
 import FetchingModal from "../common/FetchingModal"
 import PageComponent from "../common/PageComponent"
 import { API_SERVER_HOST } from "../../api/todoApi"
+import useCustomLogin from "../../hooks/useCustomLogin"
+
 const initState = {
     dtoList:[],
     pageNumList:[],
@@ -21,6 +23,8 @@ const host = API_SERVER_HOST
 
 const ListComponent = () => {
 
+    const {exceptionHandle} = useCustomLogin()
+
     const {page, size, refresh, moveToList, moveToRead} = useCustomMove()
 
     const [serverData, setServerData] = useState(initState)
@@ -34,7 +38,7 @@ const ListComponent = () => {
             console.log(data)
             setServerData(data)
             setFetching(false)
-        })
+        }).catch(err => exceptionHandle(err))
     }, [page, size, refresh])
 
 
