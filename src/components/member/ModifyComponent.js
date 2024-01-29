@@ -22,7 +22,7 @@ const ModifyComponent = () => {
 
   useEffect(() => {
 
-    setMember({...loginInfo, pw:'ABCD'})
+    setMember({...loginInfo, pw:'1111'})
 
   },[loginInfo])
   

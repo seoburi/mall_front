@@ -36,7 +36,7 @@ const useCustomLogin = () => {
     }
 
     const exceptionHandle = (ex) => {
-        console.log("Exceptoin----------------------")
+        console.log("Exception----------------------")
         console.log(ex)
         const errorMsg = ex.response.data.error
         const errorStr = createSearchParams({error: errorMsg}).toString()
@@ -52,7 +52,7 @@ const useCustomLogin = () => {
         }
     }
 
-    return {loginState, isLogin, doLogin, doLogout, moveToPath, moveToLogin, moveToLoginReturn}
+    return {loginState, isLogin, doLogin, doLogout, moveToPath, moveToLogin, moveToLoginReturn, exceptionHandle}
 
 }
 

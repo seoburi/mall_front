@@ -1,4 +1,5 @@
 import Basicmenu from "../components/menus/Basicmenu";
+import CartComponent from "../components/menus/CartComponent";
 
 const BasicLayout = ({children}) => {
     return (
@@ -11,9 +12,7 @@ const BasicLayout = ({children}) => {
             </main>
 
             <aside className="bg-green-300 md:w-1/5 lg:w-1/4 px-5">
-                <h1 className="text-2xl md:text-4xl">
-                    sidebar
-                </h1>
+                <CartComponent/>
             </aside>
         </div>
         </>

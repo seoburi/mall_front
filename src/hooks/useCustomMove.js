@@ -36,6 +36,15 @@ const useCustomMove = () => {
         navigate({pathname: `../list`, search:queryStr})
     }
     
+    const moveToRead = (num) => {
+        console.log(queryDefault)
+
+        navigate({
+            pathname: `../read/${num}`,
+            search: queryDefault
+        })
+    }
+
     const moveToModify = (num) => {
         console.log(queryDefault)
 
@@ -45,16 +54,9 @@ const useCustomMove = () => {
         })
     }
 
-    const moveToRead = (num) => {
-        console.log(queryDefault)
-
-        navigate({
-            pathname: `../read/${num}`,
-            search: queryDefault
-        })
-    }
     
-    return {moveToList, moveToModify, moveToRead, page, size, refresh}
+    
+    return {moveToList, moveToRead, moveToModify, page, size, refresh}
 }
 
 export default useCustomMove
